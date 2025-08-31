@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <title>FunRec: Unified Recommendation Training Pipeline &#8212; FunRec 推荐系统 0.0.1 documentation</title>
+
+    <link rel="stylesheet" href="../../_static/material-design-lite-1.3.0/material.blue-deep_orange.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx_materialdesign_theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/fontawesome/all.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/fonts.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/d2l.css" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/d2l.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer"><header class="mdl-layout__header mdl-layout__header--waterfall ">
+    <div class="mdl-layout__header-row">
+        
+        <nav class="mdl-navigation breadcrumb">
+            <a class="mdl-navigation__link is-active">FunRec: Unified Recommendation Training Pipeline</a>
+        </nav>
+        <div class="mdl-layout-spacer"></div>
+        <nav class="mdl-navigation">
+        
+<form class="form-inline pull-sm-right" action="../../search.html" method="get">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+        <label id="quick-search-icon" class="mdl-button mdl-js-button mdl-button--icon"  for="waterfall-exp">
+          <i class="material-icons">search</i>
+        </label>
+        <div class="mdl-textfield__expandable-holder">
+          <input class="mdl-textfield__input" type="text" name="q"  id="waterfall-exp" placeholder="Search" />
+          <input type="hidden" name="check_keywords" value="yes" />
+          <input type="hidden" name="area" value="default" />
+        </div>
+      </div>
+      <div class="mdl-tooltip" data-mdl-for="quick-search-icon">
+      Quick search
+      </div>
+</form>
+        
+<a id="button-show-source"
+    class="mdl-button mdl-js-button mdl-button--icon"
+    href="../../_sources/lib/funrec/README.md.txt" rel="nofollow">
+  <i class="material-icons">code</i>
+</a>
+<div class="mdl-tooltip" data-mdl-for="button-show-source">
+Show Source
+</div>
+        </nav>
+    </div>
+    <div class="mdl-layout__header-row header-links">
+      <div class="mdl-layout-spacer"></div>
+      <nav class="mdl-navigation">
+      </nav>
+    </div>
+</header><header class="mdl-layout__drawer">
+    
+          <!-- Title -->
+      <span class="mdl-layout-title">
+          <a class="title" href="../../index.html">
+              <span class="title-text">
+                  FunRec 推荐系统
+              </span>
+          </a>
+      </span>
+    
+    
+      <div class="globaltoc">
+        <span class="mdl-layout-title toc">Table Of Contents</span>
+        
+        
+            
+            <nav class="mdl-navigation">
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_preface/index.html">前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_installation/index.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_notation/index.html">符号</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_0_introduction/index.html">1. 推荐系统概述</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_0_introduction/0.intro.html">1.1. 推荐系统是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_0_introduction/1.outline.html">1.2. 本书概览</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_1_retrieval/index.html">2. 召回模型</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_1_retrieval/1.cf/index.html">2.1. 协同过滤</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/1.cf/0.intro.html">2.1.1. 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/1.cf/1.usercf.html">2.1.2. 基于用户的协同过滤</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/1.cf/2.itemcf.html">2.1.3. 基于物品的协同过滤</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/1.cf/3.swing.html">2.1.4. Swing 算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/1.cf/4.mf.html">2.1.5. 矩阵分解</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/1.cf/5.summary.html">2.1.6. 总结</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_1_retrieval/2.embedding/index.html">2.2. 向量召回</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/2.embedding/0.intro.html">2.2.1. 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/2.embedding/1.i2i.html">2.2.2. i2i召回</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/2.embedding/2.u2i.html">2.2.3. u2i召回</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/2.embedding/3.summary.html">2.2.4. 总结</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_1_retrieval/3.sequence/index.html">2.3. 序列召回</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/3.sequence/0.intro.html">2.3.1. 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/3.sequence/1.user_interests.html">2.3.2. 深化用户兴趣表示</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/3.sequence/2.generateive_recall.html">2.3.3. 生成式召回方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/3.sequence/3.summary.html">2.3.4. 总结</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_2_ranking/index.html">3. 精排模型</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_2_ranking/0.intro.html">3.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_2_ranking/1.wide_and_deep.html">3.2. 记忆与泛化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_2_ranking/2.feature_crossing/index.html">3.3. 特征交叉</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/2.feature_crossing/0.intro.html">3.3.1. 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/2.feature_crossing/1.second_order.html">3.3.2. 二阶特征交叉</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/2.feature_crossing/2.higher_order.html">3.3.3. 高阶特征交叉</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/2.feature_crossing/3.summary.html">3.3.4. 总结</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_2_ranking/3.sequence.html">3.4. 序列建模</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_2_ranking/4.multi_objective/index.html">3.5. 多目标建模</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/4.multi_objective/1.intro.html">3.5.1. 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/4.multi_objective/2.arch.html">3.5.2. 基础结构演进</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/4.multi_objective/3.dependency_modeling.html">3.5.3. 任务依赖建模</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/4.multi_objective/4.multi_loss_optim.html">3.5.4. 多目标损失融合</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/4.multi_objective/5.summary.html">3.5.5. 小结</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_2_ranking/5.multi_scenario/index.html">3.6. 多场景建模</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/5.multi_scenario/1.intro.html">3.6.1. 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/5.multi_scenario/2.multi_tower.html">3.6.2. 多塔结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/5.multi_scenario/3.dynamic_weight.html">3.6.3. 动态权重建模</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/5.multi_scenario/4.summary.html">3.6.4. 小结</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_3_rerank/index.html">4. 重排模型</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_3_rerank/1.intro.html">4.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_3_rerank/2.greedy.html">4.2. 基于贪心的重排</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_3_rerank/3.personalized.html">4.3. 基于个性化的重排</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_3_rerank/4.summary.html">4.4. 本章小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_4_trends/index.html">5. 难点及热点研究</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_4_trends/0.intro.html">5.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_4_trends/1.debias.html">5.2. 模型去偏</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_4_trends/2.cold_start.html">5.3. 冷启动问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_4_trends/3.generative.html">5.4. 生成式推荐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_4_trends/4.summary.html">5.5. 本章小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_5_projects/index.html">6. 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_appendix/index.html">7. Appendix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_appendix/word2vec.html">7.1. Word2vec</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_references/references.html">参考文献</a></li>
+</ul>
+
+            </nav>
+        
+        </div>
+    
+</header>
+        <main class="mdl-layout__content" tabIndex="0">
+
+	<script type="text/javascript" src="../../_static/sphinx_materialdesign_theme.js "></script>
+    <header class="mdl-layout__drawer">
+    
+          <!-- Title -->
+      <span class="mdl-layout-title">
+          <a class="title" href="../../index.html">
+              <span class="title-text">
+                  FunRec 推荐系统
+              </span>
+          </a>
+      </span>
+    
+    
+      <div class="globaltoc">
+        <span class="mdl-layout-title toc">Table Of Contents</span>
+        
+        
+            
+            <nav class="mdl-navigation">
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_preface/index.html">前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_installation/index.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_notation/index.html">符号</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_0_introduction/index.html">1. 推荐系统概述</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_0_introduction/0.intro.html">1.1. 推荐系统是什么？</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_0_introduction/1.outline.html">1.2. 本书概览</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_1_retrieval/index.html">2. 召回模型</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_1_retrieval/1.cf/index.html">2.1. 协同过滤</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/1.cf/0.intro.html">2.1.1. 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/1.cf/1.usercf.html">2.1.2. 基于用户的协同过滤</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/1.cf/2.itemcf.html">2.1.3. 基于物品的协同过滤</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/1.cf/3.swing.html">2.1.4. Swing 算法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/1.cf/4.mf.html">2.1.5. 矩阵分解</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/1.cf/5.summary.html">2.1.6. 总结</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_1_retrieval/2.embedding/index.html">2.2. 向量召回</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/2.embedding/0.intro.html">2.2.1. 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/2.embedding/1.i2i.html">2.2.2. i2i召回</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/2.embedding/2.u2i.html">2.2.3. u2i召回</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/2.embedding/3.summary.html">2.2.4. 总结</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_1_retrieval/3.sequence/index.html">2.3. 序列召回</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/3.sequence/0.intro.html">2.3.1. 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/3.sequence/1.user_interests.html">2.3.2. 深化用户兴趣表示</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/3.sequence/2.generateive_recall.html">2.3.3. 生成式召回方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_1_retrieval/3.sequence/3.summary.html">2.3.4. 总结</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_2_ranking/index.html">3. 精排模型</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_2_ranking/0.intro.html">3.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_2_ranking/1.wide_and_deep.html">3.2. 记忆与泛化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_2_ranking/2.feature_crossing/index.html">3.3. 特征交叉</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/2.feature_crossing/0.intro.html">3.3.1. 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/2.feature_crossing/1.second_order.html">3.3.2. 二阶特征交叉</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/2.feature_crossing/2.higher_order.html">3.3.3. 高阶特征交叉</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/2.feature_crossing/3.summary.html">3.3.4. 总结</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_2_ranking/3.sequence.html">3.4. 序列建模</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_2_ranking/4.multi_objective/index.html">3.5. 多目标建模</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/4.multi_objective/1.intro.html">3.5.1. 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/4.multi_objective/2.arch.html">3.5.2. 基础结构演进</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/4.multi_objective/3.dependency_modeling.html">3.5.3. 任务依赖建模</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/4.multi_objective/4.multi_loss_optim.html">3.5.4. 多目标损失融合</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/4.multi_objective/5.summary.html">3.5.5. 小结</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_2_ranking/5.multi_scenario/index.html">3.6. 多场景建模</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/5.multi_scenario/1.intro.html">3.6.1. 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/5.multi_scenario/2.multi_tower.html">3.6.2. 多塔结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/5.multi_scenario/3.dynamic_weight.html">3.6.3. 动态权重建模</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../chapter_2_ranking/5.multi_scenario/4.summary.html">3.6.4. 小结</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_3_rerank/index.html">4. 重排模型</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_3_rerank/1.intro.html">4.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_3_rerank/2.greedy.html">4.2. 基于贪心的重排</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_3_rerank/3.personalized.html">4.3. 基于个性化的重排</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_3_rerank/4.summary.html">4.4. 本章小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_4_trends/index.html">5. 难点及热点研究</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_4_trends/0.intro.html">5.1. 简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_4_trends/1.debias.html">5.2. 模型去偏</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_4_trends/2.cold_start.html">5.3. 冷启动问题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_4_trends/3.generative.html">5.4. 生成式推荐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_4_trends/4.summary.html">5.5. 本章小结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_5_projects/index.html">6. 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_appendix/index.html">7. Appendix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../chapter_appendix/word2vec.html">7.1. Word2vec</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../chapter_references/references.html">参考文献</a></li>
+</ul>
+
+            </nav>
+        
+        </div>
+    
+</header>
+
+    <div class="document">
+        <div class="page-content" role="main">
+        
+  <section id="funrec-unified-recommendation-training-pipeline">
+<h1>FunRec: Unified Recommendation Training Pipeline<a class="headerlink" href="#funrec-unified-recommendation-training-pipeline" title="Permalink to this heading">¶</a></h1>
+<p>FunRec provides a simplified, unified interface for training and evaluating recommendation models. The entire pipeline is condensed into 5 simple steps with a clean, modular architecture.</p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">funrec</span>
+
+<span class="c1"># Load complete configuration once</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">funrec</span><span class="o">.</span><span class="n">load_config</span><span class="p">(</span><span class="s2">&quot;funrec/config/config_dssm_ml1m.yaml&quot;</span><span class="p">)</span>
+
+<span class="c1"># Load raw data using data section</span>
+<span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">funrec</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Prepare features using feature section</span>
+<span class="n">feature_columns</span><span class="p">,</span> <span class="n">processed_data</span> <span class="o">=</span> <span class="n">funrec</span><span class="o">.</span><span class="n">prepare_features</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">features</span><span class="p">,</span> <span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span><span class="p">)</span>
+
+<span class="c1"># Train model using training section</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">funrec</span><span class="o">.</span><span class="n">train_model</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">training</span><span class="p">,</span> <span class="n">feature_columns</span><span class="p">,</span> <span class="n">processed_data</span><span class="p">)</span>
+
+<span class="c1"># Evaluate using evaluation section</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">funrec</span><span class="o">.</span><span class="n">evaluate_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">processed_data</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">evaluation</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="package-structure">
+<h2>Package Structure<a class="headerlink" href="#package-structure" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>funrec/
+├── __init__.py                 # Main package exports
+├── README.md                   # This documentation
+├── config/                     # Configuration management
+│   ├── __init__.py
+│   ├── config.py              # Configuration loading
+│   └── config_dssm_ml1m.yaml  # Sample configuration
+├── data/                       # Data loading and access
+│   ├── __init__.py
+│   ├── loaders.py             # Data loading functions
+│   ├── data_config.py         # Dataset configurations
+│   └── data_utils.py          # Data utilities
+├── features/                   # Feature engineering
+│   ├── __init__.py
+│   ├── feature_column.py      # FeatureColumn class definition
+│   └── processors.py          # Feature preparation logic
+├── models/                     # Model definitions and utilities
+│   ├── __init__.py
+│   ├── dssm.py               # DSSM model implementation
+│   ├── layers.py             # Neural network layers
+│   └── utils.py              # Model building utilities
+├── training/                   # Training functionality
+│   ├── __init__.py
+│   └── trainer.py            # Model training logic
+└── evaluation/                 # Model evaluation
+    ├── __init__.py
+    ├── evaluator.py          # Evaluation logic
+    └── metrics.py            # Evaluation metrics
+</pre></div>
+</div>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">¶</a></h2>
+<p>Run the test script to verify the pipeline:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>test_funrec.py
+</pre></div>
+</div>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">¶</a></h2>
+<p>The configuration file should contain four sections:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: Dataset configuration</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">features</span></code>: Feature engineering configuration</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">training</span></code>: Model training configuration with <code class="docutils literal notranslate"><span class="pre">build_function</span></code> path</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">evaluation</span></code>: Evaluation metrics configuration</p></li>
+</ul>
+<section id="example-configuration">
+<h3>Example Configuration<a class="headerlink" href="#example-configuration" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">training</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">build_function</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;funrec.models.dssm.build_dssm_model&quot;</span><span class="w">  </span><span class="c1"># Function path</span>
+<span class="w">  </span><span class="nt">model_params</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">dnn_units</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">128</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">64</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">32</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">dropout_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.2</span>
+<span class="w">  </span><span class="nt">optimizer</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;adam&quot;</span>
+<span class="w">  </span><span class="c1"># ... other training parameters</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="adding-new-models">
+<h2>Adding New Models<a class="headerlink" href="#adding-new-models" title="Permalink to this heading">¶</a></h2>
+<ol class="simple">
+<li><p>Create your model in <code class="docutils literal notranslate"><span class="pre">funrec/models/new_model.py</span></code>:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">build_new_model</span><span class="p">(</span><span class="n">feature_columns</span><span class="p">,</span> <span class="n">model_config</span><span class="p">):</span>
+    <span class="c1"># Extract parameters from config</span>
+    <span class="n">param1</span> <span class="o">=</span> <span class="n">model_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;param1&#39;</span><span class="p">,</span> <span class="n">default_value</span><span class="p">)</span>
+    <span class="c1"># Build and return (main_model, user_model, item_model)</span>
+    <span class="k">return</span> <span class="n">main_model</span><span class="p">,</span> <span class="n">user_model</span><span class="p">,</span> <span class="n">item_model</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Reference it in your config:</p></li>
+</ol>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">training</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">build_function</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;funrec.models.new_model.build_new_model&quot;</span>
+<span class="w">  </span><span class="nt">model_params</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">param1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">value1</span>
+</pre></div>
+</div>
+</section>
+<section id="supported-models">
+<h2>Supported Models<a class="headerlink" href="#supported-models" title="Permalink to this heading">¶</a></h2>
+<p>Currently supports:</p>
+<ul class="simple">
+<li><p>DSSM (Deep Structured Semantic Model) for retrieval/recall tasks</p></li>
+</ul>
+</section>
+<section id="design-principles">
+<h2>Design Principles<a class="headerlink" href="#design-principles" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Configuration-Driven</strong>: Everything specified in YAML config</p></li>
+<li><p><strong>Modular Architecture</strong>: Clear separation of concerns</p></li>
+<li><p><strong>No Over-Engineering</strong>: Simple, direct function calls</p></li>
+<li><p><strong>Easy Extension</strong>: Add new models with minimal code</p></li>
+</ul>
+</section>
+</section>
+
+
+        </div>
+        <div class="side-doc-outline">
+            <div class="side-doc-outline--content"> 
+<div class="localtoc">
+    <p class="caption">
+      <span class="caption-text">Table Of Contents</span>
+    </p>
+    <ul>
+<li><a class="reference internal" href="#">FunRec: Unified Recommendation Training Pipeline</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#package-structure">Package Structure</a></li>
+<li><a class="reference internal" href="#testing">Testing</a></li>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#example-configuration">Example Configuration</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#adding-new-models">Adding New Models</a></li>
+<li><a class="reference internal" href="#supported-models">Supported Models</a></li>
+<li><a class="reference internal" href="#design-principles">Design Principles</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+            </div>
+        </div>
+
+      <div class="clearer"></div>
+    </div><div class="pagenation">
+  </div>
+        
+        </main>
+    </div>
+  </body>
+</html>
